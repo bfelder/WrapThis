@@ -48,6 +48,9 @@ class WrapItMenuCommand(sublime_plugin.WindowCommand):
         self.window.show_quick_panel(opts, self.on_done)
 
     def on_done(self, opt):
+        if opt < 0:
+            return # do nothing as user cancelled menu
+
         """ Callback for quick panel, calls wrap command. """
         try:
             template = self.templates[opt]
